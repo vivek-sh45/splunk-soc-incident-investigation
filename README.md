@@ -1,31 +1,102 @@
 # SOC Incident Investigation using Splunk
 
 ## Project Overview
-This project demonstrates a Security Operations Center (SOC) investigation using Splunk SIEM to detect suspicious login attempts and brute-force attacks from authentication logs.
+
+This project demonstrates a basic Security Operations Center (SOC) investigation using Splunk SIEM.
+The goal of this project is to analyze authentication logs and detect suspicious login activity using Splunk queries.
+
+Logs were uploaded into Splunk and analyzed using Splunk Search Processing Language (SPL) to investigate login behavior and potential security threats.
+
+---
 
 ## Tools Used
-- Splunk SIEM
-- Log Analysis
-- Security Investigation
 
-## Investigation Objectives
-- Detect failed login attempts
-- Identify brute force attack patterns
-- Investigate suspicious IP addresses
-- Analyze abnormal authentication behavior
+* Splunk Enterprise (SIEM Platform)
+* Linux Authentication Logs
+* Log Analysis using SPL Queries
+
+---
 
 ## Investigation Steps
-1. Imported authentication logs into Splunk
-2. Searched for failed login attempts
-3. Identified IP addresses with multiple login failures
-4. Investigated suspicious authentication activity
+
+1. Uploaded Linux authentication logs into Splunk using **Add Data → Upload**.
+2. Indexed the logs into the **main index**.
+3. Used Splunk queries to analyze authentication events.
+4. Investigated login activity and suspicious patterns.
+
+---
+
+## Splunk Queries Used
+
+### View All Logs
+
+```
+index=main
+```
+
+---
+
+### Detect Failed Login Attempts
+
+```
+index=main "Failed password"
+```
+
+---
+
+### Identify Suspicious IP Addresses
+
+```
+index=main "Failed password"
+| stats count by src_ip
+| sort -count
+```
+
+---
+
+## Investigation Screenshots
+
+### Data Upload into Splunk
+
+![Data Upload](screenshots/splunk-data-upload.png)
+
+---
+
+### Viewing All Logs
+
+![All Logs](screenshots/splunk-all-logs-view.png)
+
+---
+
+### Failed Login Detection
+
+![Failed Login](screenshots/splunk-failed-login-detection.png)
+
+---
+
+### Suspicious IP Detection
+
+![Suspicious IP](screenshots/splunk-suspicious-ip-detection.png)
+
+---
 
 ## Findings
-Multiple failed login attempts were detected from a specific IP address indicating a potential brute-force attack.
+
+Authentication logs were analyzed using Splunk SIEM to identify suspicious login behavior.
+Queries were used to detect failed login attempts and analyze potential attacker IP addresses.
+
+---
 
 ## Conclusion
-SIEM analysis helped identify abnormal login activity and possible unauthorized access attempts.
+
+This project demonstrates how Splunk can be used as a SIEM tool to analyze logs, detect suspicious activity, and support SOC investigations.
+
+---
 
 ## Author
-Vivek Sharma  
+
+Vivek Sharma
 Cybersecurity Enthusiast
+
+GitHub: https://github.com/vivek-sh45
+LinkedIn: https://www.linkedin.com/in/vivek-sharma-370741392/
